@@ -178,11 +178,6 @@ if (args.Count() > 0) {
         ACTIVITY = args(2);
     }
 }
-else {
-    Log("Error : No project path provided.");
-    Usage();
-    WScript.Quit(2);
-}
 
 if(fso.FolderExists(PROJECT_PATH)) {
     Log("Project already exists!", true);
@@ -197,6 +192,7 @@ var API_LEVEL=setApiLevel();
 var VERSION=read(ROOT+'\\VERSION').replace(/\r\n/,'').replace(/\n/,'');
 // create the project
 Log("Creating new android project...");
+Log("\tPath : " + PROJECT_PATH);
 exec('android.bat create project --target '+TARGET+' --path '+PROJECT_PATH+' --package '+PACKAGE+' --activity '+ACTIVITY);
 
 // build from source. distro should have these files
